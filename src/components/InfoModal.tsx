@@ -1,92 +1,89 @@
 import React from 'react';
-import * as Dialog from '@radix-ui/react-dialog';
-import { X, ExternalLink, Lightbulb, Download } from 'lucide-react';
-import { Button } from './ui/Button';
+import { ExternalLink, Github, GraduationCap, Users, Keyboard } from 'lucide-react';
+import { Dialog } from './ui/Dialog';
+import { SHORTCUTS } from '../hooks/useKeyboardShortcuts';
+import { MODEL_LIST } from '../lib/models';
 
 interface InfoModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
-export const InfoModal: React.FC<InfoModalProps> = ({ open, onOpenChange }) => {
-  return (
-    <Dialog.Root open={open} onOpenChange={onOpenChange}>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 z-50" />
-        <Dialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-900 border border-gray-700 rounded-lg p-6 w-full max-w-4xl z-50">
-          <div className="flex items-center justify-between mb-4">
-            <Dialog.Title className="text-lg font-semibold text-gray-100">
-              About Nano Banana AI Image Editor
-            </Dialog.Title>
-            <Dialog.Close asChild>
-              <Button variant="ghost" size="icon" className="h-6 w-6">
-                <X className="h-4 w-4" />
-              </Button>
-            </Dialog.Close>
+export const InfoModal: React.FC<InfoModalProps> = ({ open, onOpenChange }) => (
+  <Dialog open={open} onOpenChange={onOpenChange} title="About Nano Banana Editor" size="lg">
+    <div className="space-y-5 text-sm">
+      <p className="text-ink-2">
+        An open-source editor for Google&rsquo;s Nano Banana image models. Built by{' '}
+        <a href="https://markfulton.com" target="_blank" rel="noopener noreferrer" className="font-medium text-accent-text hover:underline">
+          Mark Fulton
+        </a>
+        . Generate from text, edit with words, paint masks for local changes, ground prompts in live search results and render up to 4K.
+      </p>
+
+      <div className="grid gap-3 sm:grid-cols-3">
+        {MODEL_LIST.map((m) => (
+          <div key={m.id} className="rounded-xl border border-line bg-surface-2/50 p-3">
+            <div className="text-sm font-semibold text-ink">{m.name}</div>
+            <div className="mt-0.5 font-mono text-[10px] text-muted">{m.id}</div>
+            <ul className="mt-2 space-y-0.5 text-[11px] text-ink-2">
+              {m.strengths.map((s) => (
+                <li key={s}>· {s}</li>
+              ))}
+            </ul>
           </div>
-          
-          <div className="space-y-4">
-            <div className="space-y-3 text-sm text-gray-300">
-              <p>
-                Developed by{' '}
-                <a
-                  href="https://markfulton.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-yellow-400 hover:text-yellow-300 transition-colors font-semibold"
-                >
-                  Mark Fulton
-                  <ExternalLink className="h-3 w-3 inline ml-1" />
-                </a>
-              </p>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="p-4 bg-gradient-to-br from-purple-900/30 to-indigo-900/30 rounded-lg border border-purple-500/30">
-                  <div className="flex items-center mb-3">
-                    <Lightbulb className="h-5 w-5 text-purple-400 mr-2" />
-                    <h4 className="text-sm font-semibold text-purple-300">
-                      Learn to Build AI Apps & More Solutions
-                    </h4>
-                  </div>
-                  <p className="text-sm text-gray-300 mb-4">
-                    Learn to vibe code apps like this one and master AI automation, build intelligent agents, and create cutting-edge solutions that drive real business results.
-                  </p>
-                  <a
-                    href="https://www.reinventing.ai/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white rounded-lg transition-all duration-200 font-medium"
-                  >
-                    Join the AI Accelerator Program
-                    <ExternalLink className="h-4 w-4 ml-1" />
-                  </a>
-                </div>
-                
-                <div className="p-4 bg-gradient-to-br from-yellow-900/30 to-orange-900/30 rounded-lg border border-yellow-500/30">
-                  <div className="flex items-center mb-3">
-                    <Download className="h-5 w-5 text-yellow-400 mr-2" />
-                    <h4 className="text-sm font-semibold text-yellow-300">
-                      Get a Copy of This App
-                    </h4>
-                  </div>
-                  <p className="text-sm text-gray-300 mb-4">
-                    Get a copy of this app by joining the Vibe Coding is Life Skool community. Live build sessions, app projects, resources and more in the best vibe coding community on the web.
-                  </p>
-                  <a
-                    href="https://www.skool.com/vibe-coding-is-life/about?ref=456537abaf37491cbcc6976f3c26af41"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white rounded-lg transition-all duration-200 font-medium"
-                  >
-                    Join Vibe Coding is Life Community
-                    <ExternalLink className="h-4 w-4 ml-1" />
-                  </a>
-                </div>
-              </div>
+        ))}
+      </div>
+
+      <div className="grid gap-3 sm:grid-cols-2">
+        <Card
+          icon={<GraduationCap className="h-4 w-4" />}
+          title="Learn to build tools like this"
+          body="Reinventing.AI runs live build sessions on AI apps, agents and automation for founders and operators."
+          href="https://www.reinventing.ai"
+          cta="Visit Reinventing.AI"
+        />
+        <Card
+          icon={<Users className="h-4 w-4" />}
+          title="Get your own copy"
+          body="Join the Vibe Coding is Life community for the one-click install, project downloads and weekly builds."
+          href="https://www.skool.com/vibe-coding-is-life/about?ref=456537abaf37491cbcc6976f3c26af41"
+          cta="Join the community"
+        />
+      </div>
+
+      <div className="rounded-xl border border-line p-3">
+        <div className="mb-2 flex items-center gap-1.5 text-xs font-semibold text-ink-2">
+          <Keyboard className="h-3.5 w-3.5" /> Keyboard shortcuts
+        </div>
+        <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-[11px] sm:grid-cols-3">
+          {SHORTCUTS.map((s) => (
+            <div key={s.keys} className="flex justify-between gap-2">
+              <span className="text-muted">{s.label}</span>
+              <kbd className="rounded border border-line bg-surface-2 px-1 font-mono text-[10px] text-ink-2">{s.keys}</kbd>
             </div>
-          </div>
-        </Dialog.Content>
-      </Dialog.Portal>
-    </Dialog.Root>
-  );
-};
+          ))}
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between text-[11px] text-muted">
+        <span>AGPL-3.0 · © 2026 Mark Fulton</span>
+        <a href="https://github.com/markfulton/NanoBananaEditor" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-ink">
+          <Github className="h-3.5 w-3.5" /> Source on GitHub
+        </a>
+      </div>
+    </div>
+  </Dialog>
+);
+
+const Card: React.FC<{ icon: React.ReactNode; title: string; body: string; href: string; cta: string }> = ({ icon, title, body, href, cta }) => (
+  <div className="flex flex-col rounded-xl border border-line bg-surface-2/50 p-4">
+    <div className="flex items-center gap-2 text-sm font-semibold text-ink">
+      <span className="text-accent-text">{icon}</span>
+      {title}
+    </div>
+    <p className="mt-1.5 flex-1 text-xs leading-relaxed text-muted">{body}</p>
+    <a href={href} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-xs font-semibold text-accent-text hover:underline">
+      {cta} <ExternalLink className="h-3 w-3" />
+    </a>
+  </div>
+);

@@ -1,78 +1,53 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <!--
-        Nano Banana AI Image Editor ©2025 Mark Fulton
-        Join the Vibe Coding is Life Skool to get your copy:
-        👉🏼 https://www.skool.com/vibe-coding-is-life
-    
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡠⠖⠛⠉⠉⠛⠛⠹⢷⡦⣄
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⡤⠖⠊⠁⣀⣤⠀⣀⣠⣄⡀⠀⠀⠈⡎
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⠖⠋⠉⠁⠚⠵⣢⣴⢟⣭⠖⠋⠁⠀⠀⠈⠲⣄⠀⢀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⠔⠋⠀⠀⠀⠀⠀⠀⢀⣴⠟⣵⠋⠀⠀⠀⠀⠀⠀⠀⠀⠘⣆⠟
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⠋⠁⠀⠀⠀⠀⠀⠀⠀⣠⡾⢁⡜⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⡅⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠏⢀⡜⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⠟⡴⠁⠀⠀⠀⠀⠀⠀⠀⠀⣼⠏⠀⣸⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡼⢃⠎⠀⠀⠀⠐⡉⠉⠉⣙⠲⣼⠎⠀⢰⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⠤⢾⣥⣎⡀⠀⠀⡤⠛⠉⠀⠉⠑⢝⢮⠣⠀⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢎⠔⠊⠁⠀⠉⠑⢦⡜⠀⢰⣏⣿⣷⡄⠀⢣⡇⠀⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣮⡎⠀⢠⣾⣿⣱⡆⠀⢇⠀⠸⣿⣿⣿⠃⠀⣸⠇⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣇⠀⠸⣿⣿⣿⠃⠀⡜⢦⡀⠀⠉⠀⢀⡰⠿⢦⢸⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢻⣆⡀⠀⠀⠀⢀⠔⠁⠀⠈⠁⠒⠊⢹⡇⣼⠀⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⡰⠞⠛⢿⢷⠀⠀⠀⠀⢸⠇⡎⠉⠈⠉⠁⠀⠀⠀⠀⠀⠀⠀⢸⡷⢹⡀⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⡗⠀⠀⠈⣬⡄⠀⠀⠀⢺⠠⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⣸⡇⢸⠀⠀⠀⠀⣰⢻⠍⠳⣆⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⢣⣀⡀⠀⢟⣧⠀⠀⠀⢸⢸⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠞⠁⠀⢠⣿⠀⢸⡀⠀⠀⠀⣿⡇⠀⠀⣸⠀⠀⠀⠀⠀⠀⠀⠀
-⣠⢶⡫⠝⠒⠻⢵⣍⠢⠈⢮⢧⡀⠀⢸⢸⣄⣀⣀⣀⣀⡀⡤⣶⡿⠋⠀⠀⣠⡳⠃⠀⢘⡇⠀⠀⣠⣿⠃⡠⣸⠧⠤⢤⢀⠀⠀⠀⠀⠀
-⡇⢏⠀⠀⠀⠀⠀⢱⡇⠀⠀⢫⣷⠀⢼⢰⠑⢄⡘⠚⠓⠓⠉⠁⠀⢀⡠⣞⢵⡇⠀⠀⠘⡇⠀⣰⡱⠁⠈⣾⠋⠀⠀⠉⢢⢱⡀⠀⠀⠀
-⢇⠈⠓⢀⣤⠶⠉⠩⣷⡀⠰⣢⣿⠀⢸⡆⡄⠀⠸⢝⣒⣒⠒⣒⣾⡽⠞⠁⢸⢃⠀⠀⠀⣧⠀⣿⣠⠀⡠⠗⠒⢤⣄⠤⠊⣸⠃⠀⠀⠀
-⠀⡝⠀⡜⠁⠀⠀⠀⡸⡄⠀⠁⣽⠀⠸⡇⡇⠀⠀⠰⢄⣈⠉⣁⡠⠄⠀⠀⠈⣼⠀⠀⠀⢿⠀⡟⠆⠀⡷⡀⠀⠀⠙⡄⢺⠁⠀⠀⠀⠀
-⠀⢣⡀⠈⠒⠒⡲⠍⠊⢱⠠⣣⠏⠀⠀⣷⢡⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠀⠀⠀⢸⡀⠘⢜⢰⠁⠚⠳⡒⠊⢀⡜⠀⠀⠀⠀⠀
-⠀⠀⠙⡇⠀⡊⠀⠀⢀⡼⠚⠁⠀⠀⠀⢹⡸⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡇⠀⠀⠘⡇⠀⠀⠙⠦⣀⠀⢘⣠⠏⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠈⠓⠒⠒⠒⠉⠀⠀⠀⠀⠀⠀⠸⣧⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣷⠀⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡼⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣟⡀⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣧⢃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀⠀⠸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣏⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣴⠀⠀⠀⣇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡸⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡆⠀⠀⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢧⠱⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⣷⠀⠀⠸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢇⠱⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢫⡆⠀⠀⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢧⠱⡄⠀⠀⠀⠀⠀⠀⠀⠀⠘⣳⠀⠀⢹⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢯⢞⣄⠀⠀⠀⠀⠀⠀⠀⠀⢻⡆⠀⠘⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢳⡫⠆⠀⠀⠀⠀⠀⠀⠀⠘⣴⠀⠀⢻⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠹⣄⠀⠀⠀⠀⠀⠀⠀⠀⢩⡆⠀⠸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢆⠀⠀⠀⠀⠀⠀⠀⠘⣵⠀⠀⣷⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠱⣀⠀⠀⠀⠀⠀⠀⢻⡆⠀⢸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠣⡀⠀⠀⠀⠀⠈⣶⠀⠈⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠲⣄⠀⠀⠀⢉⡆⢠⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠑⠶⣤⣼⣿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
-    
+      Nano Banana Editor © 2026 Mark Fulton · AGPL-3.0
+      Source: https://github.com/markfulton/NanoBananaEditor
+      Get your own copy: https://www.skool.com/vibe-coding-is-life
     -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍌</text></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nano Banana AI Image Editor - AI Image Generator & Editor</title>
-    <meta name="description" content="Professional AI image generation and conversational editing powered by Gemini 2.5 Flash Image. Create, edit, and enhance images with natural language prompts." />
-    <meta name="keywords" content="AI image generation, image editing, Gemini AI, text to image, image enhancement, artificial intelligence" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Nano Banana Editor · Generate and edit images with Gemini</title>
+    <meta
+      name="description"
+      content="Free, open-source editor for Google's Nano Banana image models. Text to image, conversational edits, painted masks, search grounding and 4K output with Nano Banana Pro, Nano Banana 2 and Lite."
+    />
+    <meta name="keywords" content="Nano Banana, Nano Banana Pro, Nano Banana 2, Gemini image generation, AI image editor, text to image, image editing, 4K AI images" />
     <meta name="author" content="Mark Fulton" />
-    <meta name="copyright" content="©2025 Mark Fulton (https://markfulton.com)" />
+    <meta name="copyright" content="© 2026 Mark Fulton (https://markfulton.com)" />
     <meta name="license" content="GNU Affero General Public License v3.0" />
-    <meta name="application-name" content="Nano Banana Image Editor" />
-    
-    <!-- Open Graph / Facebook -->
+    <meta name="application-name" content="Nano Banana Editor" />
+
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Nano Banana Image Editor - AI Image Generation & Editing" />
-    <meta property="og:description" content="Professional AI image generation and conversational editing powered by Gemini 2.5 Flash Image" />
-    <meta property="og:site_name" content="Nano Banana Image Editor" />
-    
-    <!-- Twitter -->
+    <meta property="og:url" content="https://nanobananaeditor.dev" />
+    <meta property="og:title" content="Nano Banana Editor · Generate and edit images with Gemini" />
+    <meta property="og:description" content="Every Nano Banana model in one editor: text to image, conversational edits, masks, search grounding and 4K output." />
+    <meta property="og:site_name" content="Nano Banana Editor" />
+    <meta property="og:image" content="https://nanobananaeditor.dev/og.png" />
+
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Nano Banana Image Editor - AI Image Generation & Editing" />
-    <meta name="twitter:description" content="Professional AI image generation and conversational editing powered by Gemini 2.5 Flash Image" />
-    
-    <!-- Additional Meta -->
-    <meta name="theme-color" content="#FDE047" />
+    <meta name="twitter:title" content="Nano Banana Editor · Generate and edit images with Gemini" />
+    <meta name="twitter:description" content="Every Nano Banana model in one editor: text to image, conversational edits, masks, search grounding and 4K output." />
+    <meta name="twitter:image" content="https://nanobananaeditor.dev/og.png" />
+
+    <link rel="canonical" href="https://nanobananaeditor.dev" />
+    <meta name="theme-color" content="#f7f6f2" />
     <meta name="robots" content="index, follow" />
+    <script>
+      // Apply the saved theme before first paint to avoid a flash.
+      try {
+        var pref = JSON.parse(localStorage.getItem('nb-theme') || '{}').state?.preference || 'system';
+        var dark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        if (dark) document.documentElement.classList.add('dark');
+      } catch (e) {}
+    </script>
   </head>
-  <body class="bg-gray-900">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

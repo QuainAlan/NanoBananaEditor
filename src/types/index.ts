@@ -1,67 +1,66 @@
-export interface Asset {
+import type { ImageSize, ModelId, ThinkingLevel } from '../lib/models';
+
+export type Mode = 'generate' | 'edit' | 'mask';
+
+export interface ImageRef {
   id: string;
-  type: 'original' | 'mask' | 'output';
-  url: string;
-  mime: string;
-  width: number;
-  height: number;
-  checksum: string;
+  dataUrl: string;
+  mimeType: string;
+  width?: number;
+  height?: number;
+  name?: string;
 }
 
-export interface Generation {
+export interface GroundingInfo {
+  queries: string[];
+  sources: { title?: string; uri: string }[];
+}
+
+export interface UsageInfo {
+  promptTokens: number;
+  outputTokens: number;
+  thoughtTokens: number;
+}
+
+export interface HistoryItem {
   id: string;
+  kind: 'generate' | 'edit';
   prompt: string;
-  parameters: {
-    seed?: number;
-    temperature?: number;
+  model: ModelId;
+  size: ImageSize;
+  aspectRatio?: string;
+  thinkingLevel?: ThinkingLevel;
+  useSearch?: boolean;
+  seed?: number;
+  temperature?: number;
+  inputs: {
+    source?: ImageRef;
+    references: ImageRef[];
+    maskPreview?: ImageRef;
   };
-  sourceAssets: Asset[];
-  outputAssets: Asset[];
-  modelVersion: string;
-  timestamp: number;
-  costEstimate?: number;
-}
-
-export interface Edit {
-  id: string;
-  parentGenerationId: string;
-  maskAssetId?: string;
-  maskReferenceAsset?: Asset;
-  instruction: string;
-  outputAssets: Asset[];
-  timestamp: number;
-}
-
-export interface Project {
-  id: string;
-  title: string;
-  generations: Generation[];
-  edits: Edit[];
+  output: ImageRef;
+  batchId?: string;
+  variantIndex?: number;
+  variantCount?: number;
+  text?: string;
+  grounding?: GroundingInfo;
+  credits: number;
+  byok: boolean;
+  usage?: UsageInfo;
+  durationMs?: number;
+  parentId?: string;
   createdAt: number;
-  updatedAt: number;
-}
-
-export interface SegmentationMask {
-  id: string;
-  imageData: ImageData;
-  bounds: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
-  feather: number;
 }
 
 export interface BrushStroke {
   id: string;
   points: number[];
   brushSize: number;
-  color: string;
+  erase?: boolean;
 }
 
 export interface PromptHint {
-  category: 'subject' | 'scene' | 'action' | 'style' | 'camera';
+  category: 'subject' | 'scene' | 'style' | 'camera' | 'text' | 'edit';
   text: string;
   example: string;
 }

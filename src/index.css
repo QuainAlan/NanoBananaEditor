@@ -1,61 +1,160 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Design tokens. Light is the default; .dark on <html> swaps the set. */
+:root {
+  --c-bg: 247 246 242;
+  --c-surface: 255 255 255;
+  --c-surface-2: 241 239 233;
+  --c-surface-3: 230 227 219;
+  --c-border: 226 223 214;
+  --c-border-strong: 200 196 186;
+  --c-text: 23 23 28;
+  --c-text-2: 68 68 78;
+  --c-muted: 118 118 130;
+  --c-accent: 255 200 40;
+  --c-accent-2: 255 160 20;
+  --c-accent-fg: 23 23 28;
+  --c-accent-text: 160 104 0;
+  --c-mask: 147 51 234;
+  --c-danger: 220 38 38;
+  --c-success: 21 128 61;
+  --c-info: 29 78 216;
+  color-scheme: light;
+}
+
+.dark {
+  --c-bg: 10 10 14;
+  --c-surface: 18 18 23;
+  --c-surface-2: 26 26 33;
+  --c-surface-3: 36 36 45;
+  --c-border: 40 40 50;
+  --c-border-strong: 62 62 76;
+  --c-text: 242 242 245;
+  --c-text-2: 196 196 206;
+  --c-muted: 138 138 152;
+  --c-accent: 255 216 77;
+  --c-accent-2: 255 176 32;
+  --c-accent-fg: 20 20 26;
+  --c-accent-text: 255 216 77;
+  --c-mask: 192 132 252;
+  --c-danger: 248 113 113;
+  --c-success: 74 222 128;
+  --c-info: 96 165 250;
+  color-scheme: dark;
+}
 
 * {
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
-  font-family: 'Inter', sans-serif;
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
   font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  background: rgb(var(--c-bg));
+  color: rgb(var(--c-text));
   overflow: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Custom scrollbar for dark theme */
+/* Scrollbars follow the theme */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
-
 ::-webkit-scrollbar-track {
-  background: rgb(17 24 39);
+  background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: rgb(75 85 99);
-  border-radius: 3px;
+  background: rgb(var(--c-border-strong) / 0.8);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(107 114 128);
+  background: rgb(var(--c-muted) / 0.8);
+  background-clip: padding-box;
 }
 
-/* Custom range slider styling */
-.slider::-webkit-slider-thumb {
+/* Range sliders */
+input[type='range'].slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 999px;
+  background: rgb(var(--c-border-strong));
+  outline: none;
+}
+input[type='range'].slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
   appearance: none;
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #FDE047;
+  background: rgb(var(--c-accent));
+  border: 2px solid rgb(var(--c-surface));
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.3);
   cursor: pointer;
-  border: 2px solid #1F2937;
 }
-
-.slider::-moz-range-thumb {
+input[type='range'].slider::-moz-range-thumb {
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: #FDE047;
+  background: rgb(var(--c-accent));
+  border: 2px solid rgb(var(--c-surface));
   cursor: pointer;
-  border: 2px solid #1F2937;
 }
 
-/* Marching ants animation */
-@keyframes marching-ants {
-  0% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 10; }
+/* Number inputs without spinners */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* Focus */
+*:focus-visible {
+  outline: 2px solid rgb(var(--c-accent));
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Checkerboard behind transparent images */
+.checkerboard {
+  background-color: rgb(var(--c-surface-2));
+  background-image:
+    linear-gradient(45deg, rgb(var(--c-border) / 0.6) 25%, transparent 25%),
+    linear-gradient(-45deg, rgb(var(--c-border) / 0.6) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgb(var(--c-border) / 0.6) 75%),
+    linear-gradient(-45deg, transparent 75%, rgb(var(--c-border) / 0.6) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+}
+
+/* Subtle dotted canvas backdrop */
+.canvas-backdrop {
+  background-color: rgb(var(--c-bg));
+  background-image: radial-gradient(rgb(var(--c-border-strong) / 0.55) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Shimmer skeleton */
+.shimmer {
+  background: linear-gradient(90deg, rgb(var(--c-surface-2)) 0%, rgb(var(--c-surface-3)) 50%, rgb(var(--c-surface-2)) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
 }
 
 .marching-ants {
@@ -63,15 +162,16 @@ body {
   animation: marching-ants 0.5s linear infinite;
 }
 
-/* Focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid #FDE047;
-  outline-offset: 2px;
+/* Gentle transitions on colour changes so the theme toggle feels intentional */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 180ms ease, border-color 180ms ease, color 120ms ease;
 }
 
-/* Smooth transitions */
-* {
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
-  transition-duration: 200ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+/* Hide scrollbar but keep scrolling (chip rows) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
 }
